@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    durid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/test
+      username: root
+      password: 123456
+
+#      初始值参数
+      initialSize: 3
+      minIdle: 3
+      maxActive: 30
+      maxWait: 15000
+      validationQuery: SELECT 'x'    #验证连接
+
+#      监控页面
+      stat-view-servlet:
+       login-username: admin
+       login-password: 123456
+       allow:
+       deny: 192.168.12.1
+       url-pattern: '/druid/*'
+       enabled: true
+#     过滤页面
+      web-stat-filter:
+       exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+       url-pattern: '/*'
+       enabled: true
+    driver-class-name:
+
