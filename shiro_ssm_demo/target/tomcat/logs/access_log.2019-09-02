@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:37:27 +0800] "GET /bjsxt/toLogin HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:37:36 +0800] "GET /bjsxt/toLogin HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:37:44 +0800] "GET /bjsxt/login/toLogin HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:40:37 +0800] "GET /bjsxt/login/toLogin HTTP/1.1" 404 989 http-bio-8080-exec-1 132
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:40:37 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:41:08 +0800] "GET /bjsxt/login/toLogin.action HTTP/1.1" 200 845 http-bio-8080-exec-4 2618
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:41:21 +0800] "POST /bjsxt/login/login.action HTTP/1.1" 500 6570 http-bio-8080-exec-6 172
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:44:02 +0800] "GET /bjsxt/login/toLogin.action HTTP/1.1" 200 845 http-bio-8080-exec-2 883
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:44:44 +0800] "GET /bjsxt/login/toLogin.action HTTP/1.1" 200 845 http-bio-8080-exec-3 39
+0:0:0:0:0:0:0:1 - - [02/Sep/2019:17:46:05 +0800] "GET /bjsxt/login/toLogin.action HTTP/1.1" 200 845 http-bio-8080-exec-2 792

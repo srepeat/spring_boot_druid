@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--扫描realms所在的包-->
+    <context:component-scan base-package="cn.jcet.realm"></context:component-scan>
+
+    <!--创建凭证管理器-->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!--加密方式-->
+        <property name="hashAlgorithmName" value="md5"></property>
+
+        <!--配置散列次数-->
+        <property name="hashIterations" value="2"></property>
+    </bean>
+
+    <!--创建UserRealm-->
+    <bean id="userRealm" class="cn.jcet.realm.UserRealm">
+        <!--注入凭证管理器-->
+        <property name="credentialsMatcher" ref="credentialsMatcher"></property>
+    </bean>
+
+    <!--securityManager安全管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--注入自定义relams-->
+        <property name="realm" ref="userRealm"></property>
+    </bean>
+
+    <!--
+        Shiro 的Web过滤器
+		id必须和web.xml里面的shiroFilter的 targetBeanName的值一样
+    -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--配置安全管理器-->
+        <property name="securityManager" ref="securityManager"></property>
+
+        <!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+        <property name="loginUrl" value="/index.jsp" />
+        <!-- <property name="successUrl" value="/success.action"/> -->
+        <!-- 用户访问未对其授权的资源时，所显示的连接 -->
+        <!-- <property name="unauthorizedUrl" value="/refuse.jsp" /> -->
+        <!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 不用认证也可以访问的url -->
+                /index.jsp*=anon
+                /login/login*=anon
+                /login/toLogin*=anon
+                <!-- 如果用户访问login/logout就使用Shiro注销session -->
+                /login/logout = logout
+                <!-- 其它都要认证 -->
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+
+
+</beans>

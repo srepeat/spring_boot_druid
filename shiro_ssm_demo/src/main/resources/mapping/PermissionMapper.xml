@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jcet.mapper.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.jcet.pojo.Permission" >
+    <id column="perid" property="perid" jdbcType="INTEGER" />
+    <result column="pername" property="pername" jdbcType="VARCHAR" />
+    <result column="percode" property="percode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    perid, pername, percode
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.jcet.pojo.PermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where perid = #{perid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from permission
+    where perid = #{perid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.jcet.pojo.PermissionExample" >
+    delete from permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.jcet.pojo.Permission" >
+    insert into permission (perid, pername, percode
+      )
+    values (#{perid,jdbcType=INTEGER}, #{pername,jdbcType=VARCHAR}, #{percode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jcet.pojo.Permission" >
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="perid != null" >
+        perid,
+      </if>
+      <if test="pername != null" >
+        pername,
+      </if>
+      <if test="percode != null" >
+        percode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="perid != null" >
+        #{perid,jdbcType=INTEGER},
+      </if>
+      <if test="pername != null" >
+        #{pername,jdbcType=VARCHAR},
+      </if>
+      <if test="percode != null" >
+        #{percode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.jcet.pojo.PermissionExample" resultType="java.lang.Integer" >
+    select count(*) from permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update permission
+    <set >
+      <if test="record.perid != null" >
+        perid = #{record.perid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pername != null" >
+        pername = #{record.pername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.percode != null" >
+        percode = #{record.percode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update permission
+    set perid = #{record.perid,jdbcType=INTEGER},
+      pername = #{record.pername,jdbcType=VARCHAR},
+      percode = #{record.percode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jcet.pojo.Permission" >
+    update permission
+    <set >
+      <if test="pername != null" >
+        pername = #{pername,jdbcType=VARCHAR},
+      </if>
+      <if test="percode != null" >
+        percode = #{percode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where perid = #{perid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jcet.pojo.Permission" >
+    update permission
+    set pername = #{pername,jdbcType=VARCHAR},
+      percode = #{percode,jdbcType=VARCHAR}
+    where perid = #{perid,jdbcType=INTEGER}
+  </update>
+
+  <!--查询用户权限 queryPermissionByUserId-->
+  <select id="queryPermissionByUserId" resultMap="BaseResultMap">
+    select distinct t1.* from permission t1 inner join role_permission t2 inner
+    join user_role t3 on(t1.perid=t2.perid and t2.roleid=t3.roleid)
+    where t3.userid=#{value}
+  </select>
+
+
+
+
+</mapper>
