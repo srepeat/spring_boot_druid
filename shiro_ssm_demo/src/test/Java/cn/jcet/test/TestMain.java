@@ -1,8 +1,10 @@
 package cn.jcet.test;
 
 
+import cn.jcet.mapper.RoleMapper;
 import cn.jcet.mapper.UserMapper;
 import cn.jcet.pojo.User;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,17 +14,39 @@ import java.util.List;
 /**
  * @author 鲜磊 on 2019/9/1
  **/
-@Component
 public class TestMain {
 
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RoleMapper roleMapper;
+
 
     @Test
     public void test() {
-        System.out.println("hello");
-        System.out.println(userMapper);
+//        System.out.println("hello");
+        //System.out.println(roleMapper);
+        User user = new User();
+        user.setUsername("zhangsan");
+        user.setAddress("武汉");
+        user.setUserpwd("123456");
+        user.setSex("0");
+
+        String sqlt = user.getAddress()+user.getUsername();
+        String result = new Md5Hash(user.getUserpwd(), sqlt, 2).toString();
+        System.out.println(result);
+//        user.setUserpwd(result);
+//        System.out.println(userMapper);
+//        int insert = userMapper.insert(user);
+//        if(insert >0){
+//            System.out.println("添加成功");
+//        }else {
+//            return;
+//        }
+//        System.out.println(result);
+
+
 
 
 //        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -36,7 +60,7 @@ public class TestMain {
 //        User user = userMapper.queryUserByUserName("zhangsan");
 //        System.out.println(user);
 
-        List<User> users = userMapper.findAll();
+        List<User> users = userMapper.queryFindAll();
 //        for(User user:users){
 //            System.out.println(user);
 //        }

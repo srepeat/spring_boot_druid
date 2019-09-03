@@ -15,6 +15,7 @@ E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\PermissionSe
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\impl\RoleServiceImpl.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\pojo\PermissionExample.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\impl\PermissionServiceImpl.java
+E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\test\TestMain.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\realm\UserRealm.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\UserService.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\util\ActiveUser.java

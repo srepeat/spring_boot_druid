@@ -15,11 +15,16 @@ public interface UserService {
      * @param username
      * @return
      */
-    User queryByUserName(String username);
+    User queryUserByUserName(String username);
 
 
     /**
      * 查询全部
      */
     DataGridView queryFindAll(UserVo userVo);
+
+    /**
+     * 新增
+     */
+    void insertUser(User user);
 }

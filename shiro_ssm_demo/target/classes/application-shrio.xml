@@ -9,7 +9,7 @@
 	http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--扫描realms-->
+    <!--扫描realms所在的包-->
     <context:component-scan base-package="cn.jcet.realm"></context:component-scan>
 
     <!--创建凭证管理器-->
@@ -53,6 +53,7 @@
                 /index.jsp*=anon
                 /login/login*=anon
                 /login/toLogin*=anon
+                /login/toRegister*=anon
                 <!-- 如果用户访问login/logout就使用Shiro注销session -->
                 /login/logout = logout
                 <!-- 其它都要认证 -->

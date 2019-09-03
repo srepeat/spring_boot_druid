@@ -32,5 +32,5 @@ public interface RoleMapper {
     /**
      *更具用户id查询角色
      */
-    List<Role> queryRoleByUserId(Integer id);
+    List<Role> queryRolesByUserId(Integer id);
 }

@@ -1,4 +1,5 @@
 cn\jcet\pojo\UserExample$Criterion.class
+cn\jcet\util\ActiverUser.class
 cn\jcet\controller\UserController.class
 cn\jcet\service\impl\RoleServiceImpl.class
 cn\jcet\pojo\UserExample.class

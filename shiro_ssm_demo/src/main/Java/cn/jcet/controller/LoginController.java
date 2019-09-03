@@ -1,7 +1,7 @@
 package cn.jcet.controller;
 
 import cn.jcet.pojo.UserVo;
-import cn.jcet.util.ActiveUser;
+import cn.jcet.util.ActiverUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -30,6 +30,16 @@ public class LoginController {
         return "login";
     }
 
+
+    /**
+     * 跳转注册页面
+     *
+     */
+    @RequestMapping("toRegister")
+    public String toRegister(){
+        return "register";
+    }
+
     /**
      * 登录认证
      */
@@ -42,8 +52,9 @@ public class LoginController {
 
         try{
             System.out.println("认证成功[登陆成功]");
-
-            ActiveUser activeUser = (ActiveUser) subject.getPrincipal();
+            subject.login(token);
+            ActiverUser activeUser = (ActiverUser) subject.getPrincipal();
+            System.out.println(activeUser);
             //存入session
             session.setAttribute("user",activeUser.getUser());
             return "list";

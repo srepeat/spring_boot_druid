@@ -10,6 +10,6 @@ public interface RoleService {
     /**
      * 根据角色id查询
      */
-    List<String> queryRoleByUserId(Integer userid);
+    List<String> queryRolesByUserId(Integer userid);
 
 }

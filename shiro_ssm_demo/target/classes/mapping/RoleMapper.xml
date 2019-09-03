@@ -162,7 +162,7 @@
     where roleid = #{roleid,jdbcType=INTEGER}
   </update>
 
-  <select id="queryRoleByUserId" resultMap="BaseResultMap">
+  <select id="queryRolesByUserId" resultMap="BaseResultMap">
     select t1.* from role t1 inner join user_role t2 on(t1.roleid=t2.roleid) where t2.userid=#{value};
   </select>
 

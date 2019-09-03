@@ -20,8 +20,8 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public List<String> queryRoleByUserId(Integer userid) {
-        List<Role> role = roleMapper.queryRoleByUserId(userid);
+    public List<String> queryRolesByUserId(Integer userid) {
+        List<Role> role = roleMapper.queryRolesByUserId(userid);
         //转换集合类型
         List<String> list = new ArrayList<>();
         for (Role r : role) {
