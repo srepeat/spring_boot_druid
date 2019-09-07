@@ -227,7 +227,7 @@
 
   
   <select id="queryUserByUserName" resultMap="BaseResultMap">
-    select * from user where username=#{value};
+    select u.userid,u.username,u.userpwd from user u where username=#{value};
   </select>
   
 </mapper>

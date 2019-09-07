@@ -52,7 +52,7 @@ $("#dg").datagrid({
            {field:'userpwd',title:'密码',width:100,align:'center'},
            {field:'userpwd',title:'密码',width:100,align:'center'},
            {field:'address',title:'地址',width:100,align:'center'},
-         {field:'sex',title:'性别',width:100,align:'center',templet: function(res) {
+           {field:'sex',title:'性别',width:100,align:'center',templet: function(res) {
                 return res.sex == 1 ? '男' : '女';
             }}
 	    ]]

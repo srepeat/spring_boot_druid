@@ -36,6 +36,11 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.8.1</version>
+    </dependency>
     <!-- 导入jsp -->
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
@@ -201,7 +206,7 @@
         <configuration>
           <uriEncoding>UTF-8</uriEncoding> <!--解决页面提交数据乱码问题 -->
           <port>8080</port><!-- tomcat插件的请求端口 -->
-          <path>/jcet</path><!-- 项目的请求路径 -->
+          <path>/</path><!-- 项目的请求路径 -->
         </configuration>
       </plugin>
 

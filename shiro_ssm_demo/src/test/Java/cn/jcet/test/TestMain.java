@@ -28,14 +28,14 @@ public class TestMain {
 //        System.out.println("hello");
         //System.out.println(roleMapper);
         User user = new User();
-        user.setUsername("zhangsan");
+        user.setUsername("lisi");
         user.setAddress("武汉");
         user.setUserpwd("123456");
         user.setSex("0");
 
         String sqlt = user.getAddress()+user.getUsername();
-        String result = new Md5Hash(user.getUserpwd(), sqlt, 2).toString();
-        System.out.println(result);
+        Md5Hash md5Hash = new Md5Hash(user.getUserpwd(), sqlt, 2);
+        System.out.println(md5Hash);
 //        user.setUserpwd(result);
 //        System.out.println(userMapper);
 //        int insert = userMapper.insert(user);

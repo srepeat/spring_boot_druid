@@ -74,9 +74,9 @@
   <filter-mapping>
     <filter-name>shiroFilter</filter-name>
     <!-- 代表访问springmvc【是springmvc的前端控制器的servlet的名字】这个Servlet时就启用shiro的认证和授权 -->
-    <servlet-name>springmvc</servlet-name>
+    <!--<servlet-name>springmvc</servlet-name>-->
     <!-- 拦截所有的url 包括 css js image 等等 -->
-    <!-- <url-pattern>/*</url-pattern> -->
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
 
   <welcome-file-list>

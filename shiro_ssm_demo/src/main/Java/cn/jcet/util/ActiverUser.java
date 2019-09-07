@@ -18,7 +18,7 @@ public class ActiverUser {
     private User user;
     private List<String> roles;
     private List<String> permissions;
-    private ByteSource salt;
+//    private ByteSource salt;
 
 
     public ActiverUser(){

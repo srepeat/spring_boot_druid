@@ -4,94 +4,85 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" media="all" href="${pageContext.request.contextPath}/easyui/">
+<link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/easyui/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/easyui/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/easyui/css/nprogress.css">
+<link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/easyui/css/nprogress.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.min.js"></script>
+
+	<style type="text/css">
+		.form-control{
+			width: 25%;
+			/*margin-top: 15px;*/
+		}
+		.but_sub{
+			margin-top: 10px;
+		}
+	</style>
+
 <title>用户登陆</title>
 </head>
-<body>
+<body class="login">
+	<div align="center">
+		<a class="hiddenanchor" id="signup"></a>
+		<a class="hiddenanchor" id="signin"></a>
 
-	<h1 align="center">用户登陆</h1>
-	<h5 align="center">${error }</h5>
-	<hr>
-	<form action="${pageContext.request.contextPath}/login/login.action" method="post">
-		<table border="1" align="center" width="50%" cellpadding="5">
-			<tr>
-				<td width="30%" align="right">用户名:</td>
-				<td>
-					<input type="text" id="username" name="username">
-				</td>
-			</tr>
-			<tr>
-				<td width="30%" align="right">密 &nbsp;&nbsp;码:</td>
-				<td>
-					<input type="text" id="userpwd" name="userpwd">
-				</td>
-			</tr>
-			<tr>
-				<td align="center" colspan="2">
-					<input type="button" id="register" value="注册">
-					<input type="submit" id="loginBtn" value="登录">
-				</td>
-			</tr>
-		</table>
-	</form>
+		<div class="login_wrapper">
+			<div class="animate form login_form">
+				<section class="login_content">
+					<form method="post" action="${pageContext.request.contextPath}/login/login.action">
+						<h1>shiro学习demo案例</h1>
+						<div style="color: red;align:center">${error}</div>
+						<div>
+							<label>用户名</label>
+							<input type="text" name="username" class="form-control" placeholder="username" required="" />
+						</div>
+						<div>
+							<label>密 &nbsp;&nbsp;码</label>
+							<input type="password" name="userpwd" class="form-control" placeholder="userpwd" required="" />
+						</div>
+						<div class="but_sub">
+							<button class="btn btn-default" id="loginBtn" type="submit">登录</button>
+							<button class="btn btn-default" id="register" type="button">注册</button>
+						</div>
+						<div class="clearfix"></div>
+
+						<div class="separator">
+							<div class="clearfix"></div>
+							<br />
+
+							<div>
+								<h1><i class="fa fa-paw"></i> 江苏工程学院</h1>
+								<p>©2019 All Rights Reserved. 江苏工程学院</p>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+
+		</div>
+	</div>
 
 	<script type="text/javascript">
-		$(function(){
-		    $("#loginBtn").click(function () {
-				var username = $("#username").val();
-				var userpwd = $("#userpwd").val();
-                /**
-				 * 验证用户名
-                 */
-                if(!username){
-                    alert("用户名必填!");
-                    $("#username").focus();//获取焦点
-                    return ;
-                }
 
-                if(!userpwd){
-                    alert("密码必填！");
-                    $("#userpwd").focus();
-                    return ;
-				}
-
-                /**
-				 * ${pageContext.request.contextPath}/login/login.action
-				 * 使用ajax提
-				 */
-				 /*$.ajax({
-					// type: "post",
-					url : "",
-					data :{
-                        "username":username,
-                        "userpwd":userpwd
-					},
-					success:function (result) {
-                        if (result) {
-                            window.location.href = "list";
-                            // alert("111")
-                        } else {
-                            alert("用户名或者密码错误!");
-                        }
-                    }
-				})*/
-            })
-
+        /**
+		 * 跳转注册页面
+         */
+		$(function () {
             $("#register").click(function () {
                 $.ajax({
                     url: "${pageContext.request.contextPath}/login/toRegister.action",
                     success:function (data) {
-						if(data){
+                        if(data){
                             window.location.href="${pageContext.request.contextPath}/login/toRegister.action";
                             // alert("1111");
                         }else {
-						    return;
-						}
+                            return;
+                        }
                     }
                 })
             })
-		})
+        })
 	</script>
 </body>
 </html>

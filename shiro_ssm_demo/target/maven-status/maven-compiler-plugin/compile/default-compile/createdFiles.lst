@@ -11,11 +11,13 @@ cn\jcet\service\impl\PermissionServiceImpl.class
 cn\jcet\service\RoleService.class
 cn\jcet\util\DataGridView.class
 cn\jcet\pojo\RoleExample.class
+cn\jcet\realm\PasswordMatcher.class
 cn\jcet\pojo\PermissionExample$GeneratedCriteria.class
 cn\jcet\pojo\PermissionExample$Criteria.class
 cn\jcet\pojo\RoleExample$Criterion.class
 cn\jcet\pojo\PermissionExample$Criterion.class
 cn\jcet\service\PermissionService.class
+cn\jcet\util\EncodingUtils.class
 cn\jcet\pojo\UserExample$Criteria.class
 cn\jcet\pojo\PermissionExample.class
 cn\jcet\pojo\UserExample$GeneratedCriteria.class

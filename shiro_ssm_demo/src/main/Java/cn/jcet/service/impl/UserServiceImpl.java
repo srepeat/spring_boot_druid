@@ -5,6 +5,7 @@ import cn.jcet.pojo.User;
 import cn.jcet.pojo.UserVo;
 import cn.jcet.service.UserService;
 import cn.jcet.util.DataGridView;
+import cn.jcet.util.EncodingUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,9 +46,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void insertUser(User user) {
         //对密码的加盐
-        String sqlt = user.getAddress()+user.getAddress();
-        String result = new Md5Hash(user.getUserpwd(), sqlt, 2).toString();
-        user.setUserpwd(result);
+        user.setUserpwd(EncodingUtils.encode(user.getAddress(),user.getUserpwd()));
         userMapper.insert(user);
     }
 }

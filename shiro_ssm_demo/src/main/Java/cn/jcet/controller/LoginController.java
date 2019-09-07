@@ -21,15 +21,21 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     /**
+     * 跳转到demo页面
+     */
+    @RequestMapping("demo")
+    public String demo(){
+        return "demo";
+    }
+
+    /**
      * 跳转页面
      * @return
      */
     @RequestMapping("toLogin")
     public String toLogin(){
-
         return "login";
     }
-
 
     /**
      * 跳转注册页面
@@ -54,17 +60,18 @@ public class LoginController {
             System.out.println("认证成功[登陆成功]");
             subject.login(token);
             ActiverUser activeUser = (ActiverUser) subject.getPrincipal();
-            System.out.println(activeUser);
+            System.out.println(activeUser.getUser());
             //存入session
             session.setAttribute("user",activeUser.getUser());
             return "list";
         } catch (IncorrectCredentialsException e) {
-            System.out.println("密码不正确");
+            System.err.println("密码不正确");
             model.addAttribute("error", "密码不正确");
         } catch (UnknownAccountException e) {
-            System.out.println("用户不存在");
+            System.err.println("用户不存在");
             model.addAttribute("error", "用户不存在");
         }
         return "login";
     }
+
 }

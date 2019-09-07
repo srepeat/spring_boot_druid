@@ -13,9 +13,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ import java.util.List;
 /**
  * @author 鲜磊 on 2019/9/1
  **/
-//@Component
+//@Component("userRealm")
 public class UserRealm extends AuthorizingRealm{
 
     @Autowired
@@ -45,32 +43,13 @@ public class UserRealm extends AuthorizingRealm{
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        // 得到用户名
         String userName = token.getPrincipal().toString();
-        //        // 根据用户名查询用户
         User user = this.userService.queryUserByUserName(userName);
-        if (null != user) {
-            ActiverUser activerUser = new ActiverUser();
-            // 设置用户
-            activerUser.setUser(user);
-            // 查询当前用户的角色
-            activerUser.setRoles(this.roleService.queryRolesByUserId(user.getUserid()));
-            // 查询当前用户的权限
-            activerUser.setPermissions(this.permissionService.queryPermissionByUserId(user.getUserid()));
-            /**
-             * 你的盐池 ByteSource.Util.bytes(user.getUsername()+user.getAddress());
-             * 创建用户时密码得是这个(password + salt.toString())
-             **/
-            ByteSource credentialsSalt = ByteSource.Util.bytes(user.getUsername()+user.getAddress());
-            activerUser.setSalt(credentialsSalt);
-            AuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(activerUser, user.getUserpwd(), getName());
-            System.out.println(authorizationInfo.getCredentials());
-            return authorizationInfo;
-        } else {
-
-            //用户不存在就返回null
+        if(user == null)
             return null;
-        }
+        ActiverUser activerUser = new ActiverUser();
+        activerUser.setUser(user);
+        return new SimpleAuthenticationInfo(activerUser,user.getUserpwd(),getName());
     }
     /**
      * 授权

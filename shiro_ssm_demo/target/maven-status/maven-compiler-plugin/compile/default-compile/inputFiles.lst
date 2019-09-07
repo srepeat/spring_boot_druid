@@ -12,11 +12,13 @@ E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\util\DataGridView.ja
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\pojo\RoleExample.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\controller\LoginController.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\PermissionService.java
+E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\util\ActiverUser.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\impl\RoleServiceImpl.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\pojo\PermissionExample.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\impl\PermissionServiceImpl.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\test\TestMain.java
+E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\util\EncodingUtils.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\realm\UserRealm.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\service\UserService.java
-E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\util\ActiveUser.java
 E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\mapper\RoleMapper.java
+E:\SSH\workspace_shiro\shiro_ssm_demo\src\main\java\cn\jcet\realm\PasswordMatcher.java

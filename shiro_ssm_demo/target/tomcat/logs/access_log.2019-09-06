@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:21:58:37 +0800] "GET /jcet/login/toLogin.action HTTP/1.1" 200 2726 http-bio-8080-exec-2 774
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:21:58:37 +0800] "GET /jcet/easyui/css/bootstrap.min.css HTTP/1.1" 304 - http-bio-8080-exec-3 45
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:21:58:37 +0800] "GET /jcet/easyui/css/nprogress.css HTTP/1.1" 304 - http-bio-8080-exec-4 39
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:21:58:37 +0800] "GET /jcet/easyui/css/font-awesome.min.css HTTP/1.1" 304 - http-bio-8080-exec-1 44
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:21:58:37 +0800] "GET /jcet/easyui/fonts/fontawesome-webfont.woff2?v=4.6.3 HTTP/1.1" 304 - http-bio-8080-exec-5 31
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:21:58:37 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-8 0
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:22:18:29 +0800] "GET /jcet/easyui/css/bootstrap.min.css.map HTTP/1.1" 404 1025 http-bio-8080-exec-2 347006
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:22:18:29 +0800] "POST /jcet/login/login.action HTTP/1.1" 200 2741 http-bio-8080-exec-1 359213
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:22:18:29 +0800] "GET /jcet/easyui/css/bootstrap.min.css.map HTTP/1.1" 404 1025 http-bio-8080-exec-5 1
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:22:18:43 +0800] "POST /jcet/login/login.action HTTP/1.1" 200 2741 http-bio-8080-exec-6 3810
+0:0:0:0:0:0:0:1 - - [06/Sep/2019:22:18:43 +0800] "GET /jcet/easyui/css/bootstrap.min.css.map HTTP/1.1" 404 1025 http-bio-8080-exec-8 1
