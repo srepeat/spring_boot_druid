@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<!--<link rel="stylesheet" th:href="@{/resources/layui/css/layui.css}" media="all">-->
+	<!--<script th:src="@{/resources/layui/layui.js}" charset="utf-8"></script>-->
+	<link type="text/css" rel="stylesheet"  href="./resources/layui/easyui/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet"  href="./resources/layui/easyui/css/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet"  href="./resources/layui/easyui/css/nprogress.css">
+	<link type="text/css" rel="stylesheet"  href="./resources/layui/easyui/css/custom.min.css">
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="./resources/layui/easyui/jquery.easyui.min.js"></script>
+	<style type="text/css">
+		.form-control{
+			width: 25%;
+			margin-top: 15px;
+		}
+		.but_sub{
+			margin-top: 10px;
+		}
+	</style>
+
+	<title>用户登陆</title>
+</head>
+<body class="login">
+<div align="center">
+	<a class="hiddenanchor" id="signup"></a>
+	<a class="hiddenanchor" id="signin"></a>
+
+	<div class="login_wrapper">
+		<div class="animate form login_form">
+			<section class="login_content">
+				<form method="post" action="/login/login">
+					<!--<h1>SpringBoot_shiro学习demo</h1>-->
+					<h1>SpringBoot_shiro案例</h1>
+					<div style="color: red;align:center">
+						<span th:text="${error}"></span>
+					</div>
+					<div>
+						<label>用户名</label>
+						<input type="text" name="username" class="form-control" placeholder="username" required="" />
+					</div>
+					<div>
+						<label>密 &nbsp;&nbsp;码</label>
+						<input type="password" name="userpwd" class="form-control" placeholder="userpwd" required="" />
+					</div>
+					<div class="but_sub">
+						<button class="btn btn-default" id="loginBtn" type="submit">登录</button>
+						<button class="btn btn-default" id="register" type="button">注册</button>
+					</div>
+					<div class="clearfix"></div>
+
+					<div class="separator">
+						<div class="clearfix"></div>
+						<br />
+
+						<!--
+						<div>
+							<h1><i class="fa fa-paw"></i> 江苏工程信息学院</h1>
+							<p>©2019 All Rights Reserved. 江苏工程信息学院</p>
+						</div>
+						-->
+						<div>
+							<h1><i class="fa fa-paw"></i> 江苏工程学院</h1>
+							<p>©2019 All Rights Reserved. 江苏工程学院</p>
+						</div>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+    /**
+	 * 跳转注册页面
+     */
+	$("#register").click(function () {
+		window.location.href="/login/toRegister"
+		// alert("1111")
+    })
+</script>
+</body>
+</html>

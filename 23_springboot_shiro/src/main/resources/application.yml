@@ -1,0 +1,60 @@
+#数据源的配置
+spring:
+  datasource:
+    druid: 
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/shiro??useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 123456
+      initial-size: 2
+      max-active: 4
+      maxWait: 15000 
+      validationQuery: SELECT 'x'    #验证连接
+      #配置监控页面
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+        allow: 
+        deny: 192.168.9.123 
+        url-pattern: '/druid/*'
+        enabled: true   #启用监控页面
+      web-stat-filter:
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        url-pattern: '/*'
+        enabled: true
+#mybatis的配置
+mybatis: 
+#  config-location: classpath:mybatis.cfg.xml   注入核心 配置文件
+  mapper-locations: 
+  - 'classpath:mapper/*Mapper.xml'    #配置映射文件
+  configuration: 
+   log-prefix: mybatis
+   log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+  type-aliases-package: com.sxt.domain
+
+#shiro的定义配置
+shiro:
+ # hash-algorithm-name: md5
+ # hash-iterations: 2
+  login-url: /index.html
+  unauthorized-url: /unauthorize.html
+  anon-urls:
+  - /index.html*
+  - /index.htm*
+  - /unauthorize.html*
+  - /resources/**   #放行静态文件
+#  - /login/**
+  - /login/to*
+  - /login/login
+  - /login/insertUser
+  - /login/find*
+  logout-url: /login/logout
+  authc-urls:
+  - /**
+debug: false
+#端口
+server:
+  port: 8085
+logging:
+  level:
+    org: error

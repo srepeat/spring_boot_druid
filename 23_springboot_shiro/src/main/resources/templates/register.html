@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link type="text/css" rel="stylesheet"  href="/resources/layui/easyui/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet"  href="/resources/layui/easyui/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet"  href="/resources/layui/easyui/css/nprogress.css">
+    <link type="text/css" rel="stylesheet"  href="/resources/layui/easyui/css/custom.min.css">
+    <link type="text/css" rel="stylesheet"  href="/resources/layui/css/toastr.min.css">
+    <script type="text/javascript" th:src="@{http://libs.baidu.com/jquery/2.1.4/jquery.min.js}"></script>
+    <script type="text/javascript" src="/resources/layui/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/resources/layui/js/vue.js"></script>
+    <script type="text/javascript" src="/resources/layui/js/toastr.min.js"></script>
+    <style type="text/css">
+        .form-control {
+            width: 25%;
+            margin-top: 15px;
+        }
+
+        .but_sub {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="register">
+<hr>
+<div align="center" id="app">
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <!--method="post" -->
+                <form  method="post" id="userFrom">
+                    <h1>用户注册</h1>
+                   <!-- <div style="color: red;align:center">
+                        <span th:text="${msg}">required="请输入用户名！"</span>
+                    </div>-->
+                    <div>
+                        <label>用户名</label>
+                        <input type="text" name="username" @blur.prevent="findByUsername"
+                               v-model="user.username"  id="username" class="form-control" placeholder="username"/>
+                        <span :style="global.style" v-text="validInfo.username" id="s_username"></span>
+                    </div>
+                    <div>
+                        <label>密 &nbsp;&nbsp;码</label>
+                        <input type="password" name="userpwd" @blur.prevent="valid.userpwd.enable=true"
+                               v-model="user.userpwd" id="userpwd" class="form-control" placeholder="userpwd"/>
+                        <span :style="global.style" v-text="validInfo.userpwd" id="s_userpwd"></span>
+                    </div>
+                    <div>
+                        <label>地 &nbsp;&nbsp;址</label>
+                        <input type="text" name="address" id="address" v-model="user.address" class="form-control" placeholder="address"/>
+                        <span :style="global.style" v-text="validInfo.addrss" id="s_address"></span>
+                    </div>
+                    <div>
+                        <label>性 &nbsp;&nbsp;别：</label>
+                        <input type="radio" name="sex" class="sex" @click="user.sex=1" placeholder="sex" value="1" checked="true"/>男
+                        <input type="radio" name="sex" class="sex" @click="user.sex=0" placeholder="sex" value="0"/>女
+                    </div>
+                    <div class="but_sub">
+                        <button class="btn btn-default" id="goRegister" @click="registerUser">提交注册</button>
+                        <button class="btn btn-default" id="reset" @click="resets">重置</button>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <div class="clearfix"></div>
+                        <br/>
+
+                        <div>
+                            <h1><i class="fa fa-paw"></i> 江苏工程学院</h1>
+                            <p>©2019 All Rights Reserved. 江苏工程学院</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        let app = new Vue({
+            el:"#app",
+            data:function () {
+
+                return {
+                    global: {
+                        style: 'color:red;font-size:12'
+                    },
+                    user:{
+                        username:"",
+                        userpwd:"",
+                        address:"",
+                        sex:1
+                    },
+                    validResultInfo:{
+                        username:"",
+                        address:"",
+                    },
+                    valid:{
+                        username: {
+                            length: 10,
+                            empty: "请输入用户名",
+                            message: "用户名最大长度为10",
+                            notMatch: "用户名输入有误",
+                            regular: /^[a-zA-Z0-9]{5,10}$/,
+                            enable: false,
+                            match: false
+                        },
+                        userpwd:{
+                            length: 12,
+                            empty: "请输入密码",
+                            message: "密码最大长度为12",
+                            notMatch: "密码输入有误",
+                            regular: /^[a-zA-Z0-9]{5,12}$/,
+                            enable: false,
+                            match: false
+                        }
+                    }
+                }
+            },
+            computed:{
+                validInfo: function () {
+                    let message = {};
+                    for (let key in this.valid) {
+                        message[key] = this.matches(this.user[key], this.valid[key]);
+                    }
+                    return message;
+                }
+            },
+            methods:{
+               findByUsername(){
+                   this.valid.username.enable = true;
+                   let v = this;
+                   if(this.valid.username.regular.test(this.user.username)){
+                       this.valid.username.match = true;
+                   }
+                   if (this.valid.username.match) {
+                       $.ajax({
+                           url: "/login/findByUserName",
+                           data: {
+                               username: v.user.username
+                           },
+                           type: "GET",
+                           dataType: "json",
+                           success: function (res) {
+
+                           },
+                           error: function (err) {
+                               toastr.error("用户名已存在");
+                           }
+                       })
+                   }
+               },
+               registerUser(){
+                   if(this.validUser()){
+                       $.ajax({
+                           url : "/login/insertUser",
+                           dataType : "JSON",
+                           async : false,
+                           data : {
+                               "username":this.user.username,
+                               "userpwd":this.user.userpwd,
+                               "address":this.user.address,
+                               "sex":this.user.sex
+                           },
+                           success : function (res) {
+                               toastr.success("注册成功，跳转到登录页面");
+                               if(res.success) {
+                                   window.location.href = "/login/toLogin"
+                               }
+                           },
+                           error:function (err) {
+                               toastr.error("用户注册失败，请稍后重新注册")
+                           }
+                       });
+                   }
+               },
+                validUser() {
+                   alert("111111");
+                    for (let key in this.valid) {
+                        this.valid[key].enable = true;
+                        if (this.valid[key].match == false) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                matches(userVal, validObj) {
+                    validObj.match = false;
+                    if (validObj.enable) {
+                        if (validObj.empty) {
+                            if (userVal.trim() == "") {
+                                return validObj.empty;
+                            }
+                        }
+                        if (validObj.message) {
+                            if (validObj.length) {
+                                if (userVal.trim().length > validObj.length) {
+                                    return validObj.message;
+                                }
+                            }
+                            if (validObj.regular) {
+                                if (!validObj.regular.test(userVal.trim())) {
+                                    if (validObj.notMatch) {
+                                        return validObj.notMatch;
+                                    } else {
+                                        return validObj.message;
+                                    }
+                                }
+                            }
+                        }
+                        validObj.match = true;
+                    }
+                },
+                resets(){
+                    $('#userFrom')[0].reset();
+                }
+            },
+            match: {}
+        })
+
+
+        window.Vue=app;
+
+
+    </script>
+
+</div>
+</body>
+</html>

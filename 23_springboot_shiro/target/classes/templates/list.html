@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户数据</title>
+<link rel="stylesheet" th:href="@{/resources/layui/css/layui.css}" media="all">
+<script th:src="@{/resources/layui/layui.js}" charset="utf-8"></script>
+</head>
+<body>
+	<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 20px;">
+			<legend>用户数据</legend>
+		</fieldset>
+
+<hr>
+<table class="layui-hide" id="test"></table>
+
+<div class="layui-hide" id="toolbarDemo">
+  <div class="layui-btn-container">
+	<button class="layui-btn layui-btn-sm"  shiro:hasPermission="person:add" lay-event="getCheckData">添加</button>
+	<button class="layui-btn layui-btn-sm" shiro:hasPermission="person:update" lay-event="getCheckLength">修改</button>
+	<button class="layui-btn layui-btn-sm" shiro:hasPermission="person:delete"  lay-event="isAll">删除</button>
+	<button class="layui-btn layui-btn-sm"  shiro:hasPermission="person:export" lay-event="isAll">导出</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+layui.use('table', function(){
+	  var table = layui.table;
+	  
+	  table.render({
+	    elem: '#test'
+	    ,url:'/person/loadAllPerson'
+	    ,toolbar: '#toolbarDemo'
+	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+	    ,cols: [ [
+	      {field:'id',  title: 'ID',align:'center'}
+	      ,{field:'name',  title: '姓名',align:'center'}
+	      ,{field:'address', title: '地址',align:'center'}
+	      ,{field:'sex',  title: '性别',align:'center', templet:function(obj){
+	    	  return obj.sex==1?'男':'女';
+	      }}
+	    ] ]
+	  });
+	});
+</script>
+</body>
+</html>

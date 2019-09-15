@@ -1,0 +1,50 @@
+.chart {
+    width: 300px;
+    position: relative;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.bar {
+    height: 170px;
+    width: 20px;
+    position: relative;
+    display: inline-block;
+    margin: 0 7px;
+}
+
+.bar-div {
+    justify-content: space-around;
+    display: flex;
+    padding-top: 20px;
+}
+.bar-service{
+    justify-content: space-around;
+    display: flex;
+    padding-top: 20px;
+}
+
+.bar-percent {
+    background-color: #24BA09;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    color: #fff;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 12px;
+}
+
+.num-percent {
+    font-size: 10px;
+    color: #999;
+    position: absolute;
+    top: -13px;
+    left: 0;
+}
+
+.percent-subject {
+    position: relative;
+    top: 0%;
+}
